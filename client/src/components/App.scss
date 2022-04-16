@@ -103,3 +103,15 @@ body * {
     opacity: 0;
   }
 }
+
+.emoji-group-container {
+  flex: 0 0 100%;
+  border: 1px solid red;
+  // display: flex;
+  .emoji-group {
+    display: flex;
+  }
+  .emoji {
+    font-size: 25px;
+  }
+}
