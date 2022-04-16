@@ -4,7 +4,7 @@ const Emoji = ({ emoji, filterBy, updateEmojiList }) => {
   const copyToClipboard = (e) => {
     console.log(e.target.innerHTML);
     navigator.clipboard.writeText(e.target.innerHTML);
-    // e.target.nextSibling.innerHTML = "Copied";
+    e.target.nextSibling.nextChild.style.animationPlayState = "play";
     console.log(e.target.nextSibling);
   };
 
