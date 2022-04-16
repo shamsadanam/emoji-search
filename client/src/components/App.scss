@@ -48,6 +48,10 @@ body * {
   font-size: 30px;
   width: 15%;
   text-align: center;
+
+  &:active .emoji-tooltip:before {
+    animation-play-state: running;
+  }
 }
 
 .emoji-tooltip {
@@ -66,7 +70,8 @@ body * {
   border-radius: 5px;
   visibility: hidden;
   opacity: 0;
-  transition: opacity 350ms;
+  transition: opacity 100ms ease-out;
+
   &:after {
     content: "";
     position: absolute;
@@ -80,29 +85,12 @@ body * {
 
     border-top: var(--arrow-width) solid var(--tooltip-color);
   }
-  &:before {
-    content: "Copied!";
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: grid;
-    place-content: center;
-    width: 100%;
-    height: 100%;
-    background-color: var(--tooltip-color);
-    // background-color: #fff;
-    // color: #000;
-    // // visibility: hidden;
-    opacity: 0;
-    animation: blink 1.5s normal ease-in;
-    animation-play-state: paused;
-  }
 }
 
-.emoji-container-inner:nth-child(6) .emoji-tooltip {
-  opacity: 1;
-  visibility: visible;
-}
+// .emoji-container-inner:nth-child(6) .emoji-tooltip {
+//   opacity: 1;
+//   visibility: visible;
+// }
 
 .emoji-container-inner:hover > .emoji-tooltip {
   opacity: 1;
