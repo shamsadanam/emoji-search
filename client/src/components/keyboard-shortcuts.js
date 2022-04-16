@@ -1,4 +1,4 @@
-export const ks = () => {
+export const _ks = () => {
   document.addEventListener("keyup", (e) => {
     switch (e.key) {
       case "/":

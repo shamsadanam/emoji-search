@@ -1,48 +1,36 @@
 import React, { useState, useEffect } from "react";
-import emojiList from "./assets/emoji.min.json";
-import Emoji from "./Emoji";
-import { ks } from "./keyboard-shortcuts";
+// import emojiList from "./assets/emoji.min.json";
+import SearchBox from "./SearchBox";
+import EmojiList from "./EmojiList";
+import axios from "axios";
+import { _ks } from "./keyboard-shortcuts";
 import "./App.scss";
 
 const App = () => {
-  const [emoji, setEmoji] = useState(null);
-  const [searchInput, setSearchInput] = useState("");
-
-  const getEmoji = async (list) => {
-    setEmoji(await list);
-  };
-
-  const updateEmojiList = (list) => {
-    setEmoji(list);
-  };
+  const [emojiList, setEmojiList] = useState(null);
+  // const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
-    ks();
-    getEmoji(emojiList);
+    _ks();
+    (async () => {
+      setEmojiList((await axios.get("http://localhost:3001/emoji")).data);
+    })();
   }, []);
 
-  const onChangeHandler = (e) => {
-    setSearchInput(e.target.value);
+  const onChangeHandler = async (e) => {
+    // setSearchInput(e.target.value);
+    const list = (await axios.get("http://localhost:3001/emoji")).data;
+    const filteredList = list.filter(
+      ({ label }) =>
+        label.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1
+    );
+    setEmojiList(filteredList);
   };
 
   return (
     <div className="container">
-      <div>
-        <input
-          className="input-field"
-          type="text"
-          onChange={onChangeHandler}
-          value={searchInput}
-        />
-      </div>
-      {(emoji && (
-        <Emoji
-          emoji={emoji}
-          filterBy={searchInput}
-          updateEmojiList={updateEmojiList}
-        />
-      )) ||
-        console.log("Loading")}
+      <SearchBox onChangeHandler={onChangeHandler} />
+      {(emojiList && <EmojiList emojiList={emojiList} />) || <div>Loading</div>}
     </div>
   );
 };

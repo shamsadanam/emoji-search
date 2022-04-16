@@ -11,7 +11,6 @@
 
 body * {
   font-family: system-ui;
-  background-color: #f2f2f2;
 }
 
 .container {
@@ -30,7 +29,6 @@ body * {
 .emoji-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   align-items: center;
   gap: 10px;
 }
@@ -38,8 +36,8 @@ body * {
 .emoji-container-inner {
   position: relative;
   cursor: pointer;
-  flex: 1;
-  border: 1px solid pink;
+  flex: 0 1 50px;
+  // border: 1px solid pink;
   display: grid;
   place-content: center;
 }
