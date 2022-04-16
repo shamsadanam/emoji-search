@@ -1,0 +1,93 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --arrow-width: 10px;
+  --tooltip-color: #000;
+}
+
+body * {
+  font-family: system-ui;
+  background-color: #f2f2f2;
+}
+
+.container {
+  max-width: 300px;
+  margin-inline: auto;
+  padding: 50px 0;
+}
+.input-field {
+  width: 100%;
+  height: 5vh;
+  margin: 20px 0;
+  padding: 20px 10px;
+  font-size: 20px;
+}
+
+.emoji-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.emoji-container-inner {
+  position: relative;
+  cursor: pointer;
+  flex: 1;
+  border: 1px solid pink;
+  display: grid;
+  place-content: center;
+}
+
+.emoji {
+  font-size: 30px;
+  width: 15%;
+  text-align: center;
+}
+
+.emoji-tooltip {
+  position: absolute;
+  bottom: 150%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 200px;
+  font-size: 12px;
+  line-height: 1;
+  text-align: center;
+  background-color: var(--tooltip-color);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 350ms;
+  &:after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-block;
+    border-left: var(--arrow-width) solid transparent;
+    border-right: var(--arrow-width) solid transparent;
+
+    border-top: var(--arrow-width) solid var(--tooltip-color);
+  }
+}
+
+// .emoji-container-inner:nth-child(6) .emoji-tooltip {
+//   opacity: 1;
+//   visibility: visible;
+// }
+
+.emoji-container-inner:hover > .emoji-tooltip {
+  opacity: 1;
+  visibility: visible;
+}
